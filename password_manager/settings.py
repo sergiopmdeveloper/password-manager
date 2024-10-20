@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "compressor",
     "authentication",
 ]
 
@@ -78,6 +79,10 @@ AUTH_PASSWORD_VALIDATORS = [
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+COMPRESS_ENABLED = True
+COMPRESS_ROOT = BASE_DIR / "static"
+STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
 
 STORAGES = {
     "default": {
