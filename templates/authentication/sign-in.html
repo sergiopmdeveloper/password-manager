@@ -6,7 +6,36 @@
 {# djlint:on #}
 
 {% block body %}
-    <main>
-        <h1 class="text-blue-500 font-bold">Sign in</h1>
+    <main class="w-full h-screen flex items-center justify-center">
+        <div class="w-[35rem] bg-gray-100 p-7 rounded-md shadow-xl">
+            <h1 class="text-gray-900 text-4xl font-bold">Sign in</h1>
+
+            <form class="flex flex-col gap-4 mt-8">
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-gray-900" for="email">Email</label>
+
+                    <input class="w-full h-9 text-gray-900 text-sm px-2.5 rounded-md outline-gray-900"
+                           id="email"
+                           name="email"
+                           autocomplete="email" />
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-gray-900" for="password">Password</label>
+
+                    <input class="w-full h-9 text-gray-900 text-sm px-2.5 rounded-md outline-gray-900"
+                           id="password"
+                           name="password"
+                           type="password"
+                           autocomplete="current-password" />
+                </div>
+
+                <p class="text-gray-900 text-sm my-3">
+                    Already have an account? <a class="text-blue-500 underline cursor-pointer">Sign up</a>
+                </p>
+
+                <button class="h-9 bg-gray-900 text-white rounded-md transition-colors hover:bg-gray-900/90">Send</button>
+            </form>
+        </div>
     </main>
 {% endblock body %}
