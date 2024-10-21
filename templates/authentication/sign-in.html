@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 
+{% load static %}
+
 {# djlint:off #}
 {% block title %}Sign In{% endblock title %}
 {% block description %}Sign in page{% endblock description %}
 {# djlint:on #}
+
+{% block js %}
+    <script src="{% static 'js/api/sign-in.js' %}"></script>
+    <script src="{% static 'js/authentication/sign-in.js' %}"></script>
+{% endblock js %}
 
 {% block body %}
     <main class="w-full h-screen flex items-center justify-center">
         <div class="w-[35rem] bg-gray-100 p-7 rounded-md shadow-xl">
             <h1 class="text-gray-900 text-4xl font-bold">Sign in</h1>
 
-            <form class="flex flex-col gap-4 mt-8">
+            <form class="flex flex-col gap-4 mt-8" onsubmit="handleSignIn(event)">
+                {% csrf_token %}
+
                 <div class="flex flex-col gap-1.5">
                     <label class="text-gray-900" for="email">Email</label>
 
