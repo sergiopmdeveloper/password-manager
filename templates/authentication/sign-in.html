@@ -8,6 +8,7 @@
 {# djlint:on #}
 
 {% block js %}
+    <script src="{% static 'js/constants.js' %}"></script>
     <script src="{% static 'js/api/sign-in.js' %}"></script>
     <script src="{% static 'js/authentication/sign-in.js' %}"></script>
 {% endblock js %}
@@ -18,7 +19,7 @@
             <h1 class="text-gray-900 text-4xl font-bold">Sign in</h1>
 
             <form class="flex flex-col gap-4 mt-8" onsubmit="handleSignIn(event)">
-                {% csrf_token %}
+                <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
 
                 <div class="flex flex-col gap-1.5">
                     <label class="text-gray-900" for="email">Email</label>
@@ -38,6 +39,10 @@
                            type="password"
                            autocomplete="current-password" />
                 </div>
+
+                <ul class="hidden text-xs text-red-500 mt-3 list-disc list-inside"
+                    id="sign-in-errors">
+                </ul>
 
                 <p class="text-gray-900 text-sm my-3">
                     Already have an account? <a class="text-blue-500 underline cursor-pointer">Sign up</a>
