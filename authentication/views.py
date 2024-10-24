@@ -3,8 +3,10 @@ import json
 from django.contrib.auth import login
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.cache import never_cache
 
 from authentication.models import AppUser
 
@@ -14,6 +16,7 @@ class SignInView(View):
     Sign in view
     """
 
+    @method_decorator(never_cache)
     def get(self, request: WSGIRequest) -> HttpResponse:
         """
         Renders the sign in page
@@ -26,8 +29,12 @@ class SignInView(View):
         Returns
         -------
         HttpResponse
-            The rendered sign in page
+            A redirect response to the user page if the user is
+            authenticated or a render response with the sign in page
         """
+
+        if request.user.is_authenticated:
+            return redirect("/user")
 
         return render(request, "authentication/sign-in.html")
 
