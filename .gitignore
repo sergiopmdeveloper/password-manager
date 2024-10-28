@@ -1,0 +1,21 @@
+# Development container
+.devcontainer
+
+# Local database
+db.sqlite3
+
+# Python cache
+__pycache__
+
+# Environment variables
+.env
+
+# Node.js dependencies
+node_modules
+
+# Static files
+static/css/output.css
+static/CACHE
+
+# Visual Studio Code
+.vscode
