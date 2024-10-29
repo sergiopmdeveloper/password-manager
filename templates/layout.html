@@ -1,5 +1,6 @@
 {# Base page template #}
 
+{% load unicorn %}
 {% load compress %}
 {% load static %}
 
@@ -17,12 +18,16 @@
         <meta name="description"
               content="{% block description %}Manage your passwords with ease{% endblock description %}" />
 
+        {% unicorn_scripts %}
+
         {% compress css %}
             <link rel="stylesheet" href="{% static 'css/output.css' %}">
         {% endcompress %}
     </head>
 
     <body>
+        {% csrf_token %}
+
         {% block body %}
             <span>Hey developer! You forget to add the content of this page 🫣</span>
         {% endblock body %}

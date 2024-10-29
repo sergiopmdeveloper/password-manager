@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_unicorn",
     "compressor",
     "authentication",
 ]
@@ -82,7 +83,12 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 COMPRESS_ENABLED = True
 COMPRESS_ROOT = BASE_DIR / "static"
-STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
+)
 
 STORAGES = {
     "default": {
