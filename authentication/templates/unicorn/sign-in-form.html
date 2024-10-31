@@ -1,5 +1,51 @@
-{# Sign in form #}
+{# Sign in form component #}
 
-<div>
-    <h1>{{ name }}</h1>
-</div>
+<section class="w-full h-screen flex items-center justify-center text-gray-900">
+    <div class="w-[35rem] bg-gray-100 p-6 rounded-md">
+        <h1 class="text-4xl font-bold">Sign in</h1>
+
+        <form unicorn:submit.prevent="submit" class="mt-8">
+            <div class="flex flex-col gap-1.5">
+                <label for="email">Email</label>
+
+                <input unicorn:model.defer="email"
+                       class="w-full p-2 rounded-md outline-gray-900{% if unicorn.errors.email %} border-2 border-red-500 outline-0{% endif %}"
+                       id="email"
+                       name="email"
+                       placeholder="Your email..."
+                       autocomplete="off">
+
+                {% if unicorn.errors.email %}<p class="text-xs text-red-500">{{ unicorn.errors.email.0.message }}</p>{% endif %}
+            </div>
+
+            <div class="flex flex-col gap-1.5 mt-4">
+                <label for="password">Password</label>
+
+                <input unicorn:model.defer="password"
+                       class="w-full p-2 rounded-md outline-gray-900{% if unicorn.errors.password %} border-2 border-red-500 outline-0{% endif %}"
+                       id="password"
+                       name="password"
+                       type="password"
+                       placeholder="Your password..."
+                       autocomplete="off">
+
+                {% if unicorn.errors.password %}<p class="text-xs text-red-500">{{ unicorn.errors.password.0.message }}</p>{% endif %}
+            </div>
+
+            {% if invalid_credentials %}
+                <p class="w-fit text-xs text-red-600 bg-red-300 mt-8 px-1 py-0.5 rounded-md">Email or password incorrect</p>
+            {% endif %}
+
+            <p class="text-sm mt-8">
+                Already have an account? <a class="text-blue-500 underline" href="">Sign up</a>
+            </p>
+
+            <button unicorn:loading.attr="disabled"
+                    unicorn:loading.class="opacity-50 cursor-not-allowed"
+                    unicorn:loading.class.remove="hover:bg-gray-900/90"
+                    class="w-full text-white bg-gray-900 mt-8 py-2 rounded-md transition-colors hover:bg-gray-900/90">
+                Send
+            </button>
+        </form>
+    </div>
+</section>

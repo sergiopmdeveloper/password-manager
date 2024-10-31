@@ -1,15 +1,15 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from authentication.constants import APP_USER_EMAIL_ERRORS
-
 
 class AppUser(AbstractUser):
     """
     Custom user model
     """
 
-    email = models.EmailField(unique=True, error_messages=APP_USER_EMAIL_ERRORS)
+    email = models.EmailField(
+        unique=True, error_messages={"unique": "Email already exists."}
+    )
     email_confirmed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
