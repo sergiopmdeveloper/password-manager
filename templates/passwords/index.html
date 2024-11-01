@@ -1,11 +1,16 @@
 {% extends "layout.html" %}
 
 {% load unicorn %}
+{% load static %}
 
 {# djlint:off #}
 {% block title %}Passwords{% endblock title %}
 {% block description %}Passwords page{% endblock description %}
 {# djlint:on #}
+
+{% block js %}
+    <script src="{% static 'js/passwords/index.js' %}"></script>
+{% endblock js %}
 
 {% block body %}
     <main>
