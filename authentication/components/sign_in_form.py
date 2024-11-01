@@ -1,5 +1,8 @@
+from typing import Optional
+
 from django import forms
 from django.contrib.auth import login
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django_unicorn.components import UnicornView
 
@@ -30,9 +33,15 @@ class SignInFormView(UnicornView):
     password = ""
     invalid_credentials = False
 
-    def submit(self):
+    def submit(self) -> Optional[HttpResponseRedirect]:
         """
-        Submit the form
+        Submits the form
+
+        Returns
+        -------
+        Optional[HttpResponseRedirect]
+            Nothing if there are validation errors
+            or a redirect to the passwords page
         """
 
         self.validate()
