@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "django_unicorn",
     "compressor",
     "authentication",
+    "apps.passwords",
 ]
 
 MIDDLEWARE = [
