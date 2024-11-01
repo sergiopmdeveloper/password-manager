@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% load unicorn %}
+
 {# djlint:off #}
 {% block title %}Sign In{% endblock title %}
 {% block description %}Sign in page{% endblock description %}
@@ -7,6 +9,6 @@
 
 {% block body %}
     <main>
-        <h1 class="text-blue-500 font-bold">Sign in</h1>
+        {% unicorn 'sign-in-form' %}
     </main>
 {% endblock body %}
