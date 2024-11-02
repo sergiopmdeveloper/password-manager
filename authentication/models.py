@@ -1,5 +1,11 @@
+from typing import TYPE_CHECKING
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import QuerySet
+
+if TYPE_CHECKING:
+    from apps.passwords.models import Password
 
 
 class AppUser(AbstractUser):
@@ -23,6 +29,19 @@ class AppUser(AbstractUser):
         """
 
         return self.email
+
+    @property
+    def passwords(self) -> QuerySet["Password"]:
+        """
+        User passwords queryset facade
+
+        Returns
+        -------
+        QuerySet[Password]
+            The user passwords queryset
+        """
+
+        return self.passwords
 
     class Meta:
         """

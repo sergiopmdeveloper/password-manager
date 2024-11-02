@@ -2,6 +2,7 @@ from django.db.models.query import QuerySet
 from django_unicorn.components import UnicornView
 
 from apps.passwords.models import Password
+from authentication.models import AppUser
 
 
 class PasswordTableView(UnicornView):
@@ -16,4 +17,6 @@ class PasswordTableView(UnicornView):
         Mounts the component
         """
 
-        self.user_passwords = self.request.user.passwords.all()
+        user: AppUser = self.request.user
+
+        self.user_passwords = user.passwords.all()
