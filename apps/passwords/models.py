@@ -8,9 +8,7 @@ class Password(models.Model):
     Password model
     """
 
-    user = models.ForeignKey(
-        AppUser, on_delete=models.CASCADE, related_name="passwords"
-    )
+    user = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name="passwords")
     name = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     username = models.CharField(max_length=255, blank=True, null=True)
