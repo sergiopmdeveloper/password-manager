@@ -25,20 +25,35 @@ def password_table_component(user: AppUser) -> PasswordTableView:
     request = request_factory.post("/unicorn/message/password-table")
     request.user = user
 
-    return PasswordTableView(
-        component_id="test", component_name="password-table", request=request
-    )
+    return PasswordTableView(component_id="test", component_name="password-table", request=request)
 
 
 @pytest.mark.usefixtures("passwords")
 @pytest.mark.django_db
-def test_password_table_component_initial_state(
-    password_table_component: PasswordTableView, user: AppUser
-):
+def test_password_table_component_initial_state(password_table_component: PasswordTableView):
     """
     Tests the initial state of the password table component
     """
 
     password_table_component.mount()
 
-    assert list(password_table_component.user_passwords) == list(user.passwords.all())
+    assert list(password_table_component.user_passwords) == list(
+        password_table_component.request.user.passwords.all()
+    )
+
+
+@pytest.mark.usefixtures("passwords")
+@pytest.mark.django_db
+def test_password_table_component_delete_password(password_table_component: PasswordTableView):
+    """
+    Tests the delete password method of the password table component
+    and checks if the password was deleted
+    """
+
+    password_table_component.mount()
+
+    original_passwords_length = len(password_table_component.user_passwords)
+
+    password_table_component.delete_password(password_table_component.user_passwords.first().id)
+
+    assert len(password_table_component.user_passwords) == original_passwords_length - 1
