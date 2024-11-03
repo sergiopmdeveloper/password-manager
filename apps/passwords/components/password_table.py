@@ -17,6 +17,23 @@ class PasswordTableView(UnicornView):
         Mounts the component
         """
 
+        self.load_passwords()
+
+    def delete_password(self, password_id: int) -> None:
+        """
+        Deletes a password
+        """
+
+        password = Password.objects.get(id=password_id)
+        password.delete()
+
+        self.load_passwords()
+
+    def load_passwords(self) -> None:
+        """
+        Loads passwords
+        """
+
         user: AppUser = self.request.user
 
         self.user_passwords = user.passwords.all()
