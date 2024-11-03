@@ -1,2 +1,5 @@
 [tool.djlint]
-max_blank_lines=2
+max_blank_lines = 2
+
+[tool.black]
+line-length = 100

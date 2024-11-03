@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "django_unicorn",
     "compressor",
     "authentication",
+    "apps.passwords",
 ]
 
 MIDDLEWARE = [
@@ -104,3 +105,22 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+UNICORN = {
+    "APPS": [
+        "authentication",
+        "apps.passwords",
+    ],
+    "CACHE_ALIAS": "default",
+    "MINIFY_HTML": False,
+    "MINIFIED": True,
+    "SERIAL": {
+        "ENABLED": False,
+        "TIMEOUT": 60,
+    },
+    "SCRIPT_LOCATION": "after",
+    "MORPHER": {
+        "NAME": "morphdom",
+        "RELOAD_SCRIPT_ELEMENTS": False,
+    },
+}

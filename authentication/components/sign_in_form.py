@@ -14,12 +14,8 @@ class SignInFormForm(forms.Form):
     Sign in form component form
     """
 
-    email = forms.CharField(
-        required=True, error_messages={"required": "Email is required."}
-    )
-    password = forms.CharField(
-        required=True, error_messages={"required": "Password is required."}
-    )
+    email = forms.CharField(required=True, error_messages={"required": "Email is required."})
+    password = forms.CharField(required=True, error_messages={"required": "Password is required."})
 
 
 class SignInFormView(UnicornView):
