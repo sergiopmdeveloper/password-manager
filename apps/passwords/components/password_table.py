@@ -27,6 +27,8 @@ class PasswordTableView(UnicornView):
         password = Password.objects.get(id=password_id)
         password.delete()
 
+        self.call("removeDeletePasswordModalOverlay")
+
         self.load_passwords()
 
     def load_passwords(self) -> None:

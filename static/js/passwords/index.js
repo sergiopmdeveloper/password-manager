@@ -25,3 +25,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+/**
+ * Removes the delete password modal overlay
+ */
+function removeDeletePasswordModalOverlay() {
+  const overlay = document.querySelector(
+    '.bg-gray-900\\/50.dark\\:bg-gray-900\\/80.fixed.inset-0.z-40'
+  );
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
