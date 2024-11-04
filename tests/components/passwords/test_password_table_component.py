@@ -1,4 +1,5 @@
 from unittest.mock import Mock
+
 import pytest
 from django.test import RequestFactory
 
@@ -55,9 +56,7 @@ def test_password_table_component_delete_password(password_table_component: Pass
     call_mock = password_table_component.call = Mock()
 
     password_table_component.mount()
-
     original_passwords_length = len(password_table_component.user_passwords)
-
     password_table_component.delete_password(password_table_component.user_passwords.first().id)
 
     call_mock.assert_called_with("removeDeletePasswordModalOverlay")
