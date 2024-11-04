@@ -22,9 +22,7 @@ def sign_in_form_component() -> SignInFormView:
     request_factory = RequestFactory()
     request = request_factory.post("/unicorn/message/sign-in-form")
 
-    return SignInFormView(
-        component_id="test", component_name="sign-in-form", request=request
-    )
+    return SignInFormView(component_id="test", component_name="sign-in-form", request=request)
 
 
 def test_sign_in_form_component_initial_state(sign_in_form_component: SignInFormView):
