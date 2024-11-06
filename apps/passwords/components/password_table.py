@@ -11,6 +11,7 @@ class PasswordTableView(UnicornView):
     """
 
     user_passwords: QuerySet[Password]
+    displayed_modal = ""
 
     def mount(self) -> None:
         """
@@ -27,8 +28,7 @@ class PasswordTableView(UnicornView):
         password = Password.objects.get(id=password_id)
         password.delete()
 
-        self.call("removeDeletePasswordModalOverlay")
-
+        self.hide_modal()
         self.load_passwords()
 
     def load_passwords(self) -> None:
@@ -39,3 +39,22 @@ class PasswordTableView(UnicornView):
         user: AppUser = self.request.user
 
         self.user_passwords = user.passwords.all()
+
+    def display_modal(self, modal_id: str) -> None:
+        """
+        Displays a modal
+
+        Parameters
+        ----------
+        modal_id : str
+            The id of the modal to display
+        """
+
+        self.displayed_modal = modal_id
+
+    def hide_modal(self) -> None:
+        """
+        Hides the modal
+        """
+
+        self.displayed_modal = ""
