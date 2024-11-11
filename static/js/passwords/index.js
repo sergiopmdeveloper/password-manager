@@ -14,27 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
       navigator.clipboard.writeText(password).then(() => {
         this.textContent = 'Copied';
         this.classList.add('opacity-50', 'cursor-not-allowed');
+        this.classList.remove('hover:bg-gray-900/80');
         this.disabled = true;
 
         setTimeout(() => {
           this.textContent = 'Copy';
           this.classList.remove('opacity-50', 'cursor-not-allowed');
+          this.classList.add('hover:bg-gray-900/80');
           this.disabled = false;
         }, 2000);
       });
     });
   });
 });
-
-/**
- * Removes the delete password modal overlay
- */
-function removeDeletePasswordModalOverlay() {
-  const overlay = document.querySelector(
-    '.bg-gray-900\\/50.dark\\:bg-gray-900\\/80.fixed.inset-0.z-40'
-  );
-
-  if (overlay) {
-    overlay.remove();
-  }
-}
